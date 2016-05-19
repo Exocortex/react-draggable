@@ -631,7 +631,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	// Get from offsetParent
 	function offsetXYFromParentOf(e /*: MouseEvent*/, node /*: HTMLElement & {offsetParent: HTMLElement}*/) /*: ControlPosition*/ {
-	  var evt = e.targetTouches && e.targetTouches.length ? e.targetTouches[0] : e;
+	  var evt = void 0;
+	  if (e.targetTouches && e.targetTouches.length) evt = e.targetTouches[0];else if (e.changedTouches && e.changedTouches.length) evt = e.changedTouches[0];else evt = e;
 	
 	  var offsetParent = node.offsetParent || document.body;
 	  var offsetParentRect = node.offsetParent === document.body ? { left: 0, top: 0 } : offsetParent.getBoundingClientRect();
